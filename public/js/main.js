@@ -95,44 +95,39 @@ if (inputData.value === "") {
 
 const getData = async () => {
 
+
     if (inputData.value === "") {
         alert("Enter City Name");
     }
     else {
 
-        try {
+        weather.style.display = "none";
+        const api = `http://api.openweathermap.org/data/2.5/weather?q=${inputData.value}&units=metric&appid=8191933a140a7324702d81894e01c4cd`
+        const apiData = await fetch(api);
+        // console.log(apiData)
+        const jsonData = await apiData.json();
+        // console.log(jsonData)
+        const arrData = [jsonData];
+        // console.log(arrData)
+        if (arrData[0].message === "city not found") {
+            //errorMsz.style.display = "flex";
             weather.style.display = "none";
-            const api = `http://api.openweathermap.org/data/2.5/weather?q=${inputData.value}&units=metric&appid=8191933a140a7324702d81894e01c4cd`
-            const apiData = await fetch(api);
-            // console.log(apiData)
-            const jsonData = await apiData.json();
-            // console.log(jsonData)
-            const arrData = [jsonData];
-            // console.log(arrData)
-            if (arrData[0].message === "city not found") {
-                //errorMsz.style.display = "flex";
-                weather.style.display = "none";
-            }
-
-            if (arrData[0].weather[0].main === "Clouds") {
-                weatherStatus.innerHTML = '<i class="bi bi-clouds-fill"></i>';
-            } else if (arrData[0].weather[0].main === "Rain") {
-                weatherStatus.innerHTML = '<i class="bi bi-cloud-rain-fill"></i>';
-            } else {
-                weatherStatus.innerHTML = '<i class="bi bi-sun-fill"></i>';
-            }
-
-            cityName.innerHTML = `${arrData[0].name}`
-            countryName.innerHTML = `${arrData[0].sys.country}`
-            minTemp.innerHTML = `${arrData[0].main.temp_min}`
-            maxTemp.innerHTML = `${arrData[0].main.temp_max}`
-            tempData.innerHTML = `${arrData[0].main.temp}`
-            weather.style.display = "flex";
         }
-        catch (error) {
-            alert("Enter Valid city Name");
 
+        if (arrData[0].weather[0].main === "Clouds") {
+            weatherStatus.innerHTML = '<i class="bi bi-clouds-fill"></i>';
+        } else if (arrData[0].weather[0].main === "Rain") {
+            weatherStatus.innerHTML = '<i class="bi bi-cloud-rain-fill"></i>';
+        } else {
+            weatherStatus.innerHTML = '<i class="bi bi-sun-fill"></i>';
         }
+
+        cityName.innerHTML = `${arrData[0].name}`
+        countryName.innerHTML = `${arrData[0].sys.country}`
+        minTemp.innerHTML = `${arrData[0].main.temp_min}`
+        maxTemp.innerHTML = `${arrData[0].main.temp_max}`
+        tempData.innerHTML = `${arrData[0].main.temp}`
+        weather.style.display = "flex";
     }
     inputData.value = "";
 }
