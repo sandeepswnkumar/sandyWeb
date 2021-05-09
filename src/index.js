@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-
+const port = process.env.port || 8000;
 const hbs = require('hbs');
 
 hbs.registerPartials(path.join(__dirname,'../templates/partials'));
@@ -36,6 +36,6 @@ app.get('*',(req,res)=>{
 })
 
 
-app.listen(8000, ()=>{
+app.listen(port, ()=>{
     console.log("Server Started...")
 })
