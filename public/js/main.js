@@ -107,13 +107,13 @@ const getData = async () => {
 
         try {
             let inputVal = inputData.value;
-            console.log(inputData.value);
-            console.log(inputVal);
+            // console.log(inputData.value);
+            // console.log(inputVal);
             weather.style.display = "none";
             spinner.removeAttribute('hidden');
             errorMsz.style.display = "none";
             const api = `https://api.openweathermap.org/data/2.5/weather?q=${inputVal}&units=metric&appid=8191933a140a7324702d81894e01c4cd`
-            console.log("after link" + inputData.value);
+            // console.log("after link" + inputData.value);
             const apiData = await fetch(api).then(response => response.json())
                 .then(data => {
                     spinner.setAttribute('hidden', '');
@@ -141,7 +141,7 @@ const getData = async () => {
                     weather.style.display = "flex";
 
 
-                    console.log(data)
+                    // console.log(data)
 
                 });
 
