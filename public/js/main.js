@@ -108,7 +108,7 @@ const getData = async () => {
             console.log(inputData.value);
             console.log(inputVal);
             weather.style.display = "none";
-            const api = `http://api.openweathermap.org/data/2.5/weather?q=${inputVal}&units=metric&appid=8191933a140a7324702d81894e01c4cd`
+            const api = `https://api.openweathermap.org/data/2.5/weather?q=${inputVal}&units=metric&appid=8191933a140a7324702d81894e01c4cd`
             console.log("after link" + inputData.value);
             const apiData = await fetch(api);
             // console.log(apiData)
