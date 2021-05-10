@@ -163,7 +163,10 @@ const getData = async () => {
     inputData.value = "";
 }
 
-sBtn.addEventListener('click', getData)
+sBtn.addEventListener('click', (event)=>{
+    event.preventDefault();
+    getData();
+})
 
 inputData.addEventListener('keypress', (event) => {
     // console.log(event.key)
