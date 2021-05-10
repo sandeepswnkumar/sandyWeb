@@ -35,6 +35,9 @@ const dayTime = () => {
             }
         }
     }
+    if(hr==0){
+        hr = 12;
+    }
     if (min < 10) {
         min = '0' + min;
     }
@@ -46,11 +49,11 @@ const dayTime = () => {
 
 
 
-// setInterval(() => {
+setInterval(() => {
+    timeData.innerHTML = dayTime();
+}, 1000);
 
-// }, 1000);
 
-timeData.innerHTML = dayTime();
 
 
 
